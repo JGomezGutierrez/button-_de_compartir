@@ -34,10 +34,32 @@ function Calculadora() {
         break;
       default:
         break;
+      
+      case 'potencia':
+      resultado = Math.pow(numero1, numero2);
+      break;
+      
+      case 'raizNumero1':
+        if (numero1 < 0) {
+          setResultado('No se puede calcular la raíz cuadrada de un número negativo');
+          return;
+        }
+        resultado = Math.sqrt(numero1);
+        break;
+        
+      case 'porcentaje':
+        resultado = (numero1 * numero2) / 100;
+        break;
     }
-
+    
     setResultado(resultado);
   };
+
+  const limpiarCampos = () => {
+    setNum1('');
+    setNum2('');
+    setResultado(null);
+  }; 
 
   return (
     <div>
@@ -67,6 +89,11 @@ function Calculadora() {
         <button onClick={() => handleOperacion('restar')}>Restar</button>
         <button onClick={() => handleOperacion('multiplicar')}>Multiplicar</button>
         <button onClick={() => handleOperacion('dividir')}>Dividir</button>
+        <button onClick={() => handleOperacion('potencia')}>Potencia</button>
+        <button onClick={() => handleOperacion('raizNumero1')}>Raíz Cuadrada de Número 1</button>
+        {/* <button onClick={() => handleOperacion('raizProducto')}>Raíz Cuadrada del Producto</button> */}
+        <button onClick={() => handleOperacion('porcentaje')}>Porcentaje</button>
+        <button ClassName='' onClick={limpiarCampos}>Limpiar</button>
       </div>
       {resultado !== null && (
         <div>
